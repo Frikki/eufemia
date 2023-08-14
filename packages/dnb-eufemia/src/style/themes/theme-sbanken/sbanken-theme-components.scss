@@ -22,11 +22,15 @@ $fonts-path: '../../../../assets/fonts/dnb' !default;
 @import '../../../components/avatar/style/themes/dnb-avatar-theme-sbanken.scss';
 @import '../../../components/breadcrumb/style/themes/dnb-breadcrumb-theme-sbanken.scss';
 @import '../../../components/button/style/themes/dnb-button-theme-sbanken.scss';
+<<<<<<< HEAD
 @import '../../../components/form-label/style/themes/dnb-form-label-theme-sbanken.scss';
 @import '../../../components/form-row/style/themes/dnb-form-row-theme-sbanken.scss';
 @import '../../../components/form-status/style/themes/dnb-form-status-theme-sbanken.scss';
 @import '../../../components/global-status/style/themes/dnb-global-status-theme-sbanken.scss';
 @import '../../../components/input/style/themes/dnb-input-theme-sbanken.scss';
+=======
+@import '../../../components/dropdown/style/themes/dnb-dropdown-theme-sbanken.scss';
+>>>>>>> 97d20ebb6e (style(Dropdown): Add theme for sbanken)
 @import '../../../components/logo/style/themes/dnb-logo-theme-sbanken.scss';
 @import '../../../components/pagination/style/themes/dnb-pagination-theme-sbanken.scss';
 @import '../../../components/progress-indicator/style/themes/dnb-progress-indicator-theme-sbanken.scss';
@@ -41,7 +45,12 @@ $fonts-path: '../../../../assets/fonts/dnb' !default;
 @import '../../../components/date-picker/style/themes/dnb-date-picker-theme-ui.scss';
 @import '../../../components/dialog/style/themes/dnb-dialog-theme-ui.scss';
 @import '../../../components/drawer/style/themes/dnb-drawer-theme-ui.scss';
+<<<<<<< HEAD
 @import '../../../components/dropdown/style/themes/dnb-dropdown-theme-ui.scss';
+=======
+@import '../../../components/form-label/style/themes/dnb-form-label-theme-ui.scss';
+@import '../../../components/form-row/style/themes/dnb-form-row-theme-ui.scss';
+>>>>>>> 97d20ebb6e (style(Dropdown): Add theme for sbanken)
 @import '../../../components/form-set/style/themes/dnb-form-set-theme-ui.scss';
 @import '../../../components/global-error/style/themes/dnb-global-error-theme-ui.scss';
 @import '../../../components/help-button/style/themes/dnb-help-button-theme-ui.scss';
