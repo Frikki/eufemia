@@ -22,15 +22,12 @@ $fonts-path: '../../../../assets/fonts/dnb' !default;
 @import '../../../components/avatar/style/themes/dnb-avatar-theme-sbanken.scss';
 @import '../../../components/breadcrumb/style/themes/dnb-breadcrumb-theme-sbanken.scss';
 @import '../../../components/button/style/themes/dnb-button-theme-sbanken.scss';
-<<<<<<< HEAD
+@import '../../../components/dropdown/style/themes/dnb-dropdown-theme-sbanken.scss';
 @import '../../../components/form-label/style/themes/dnb-form-label-theme-sbanken.scss';
 @import '../../../components/form-row/style/themes/dnb-form-row-theme-sbanken.scss';
 @import '../../../components/form-status/style/themes/dnb-form-status-theme-sbanken.scss';
 @import '../../../components/global-status/style/themes/dnb-global-status-theme-sbanken.scss';
 @import '../../../components/input/style/themes/dnb-input-theme-sbanken.scss';
-=======
-@import '../../../components/dropdown/style/themes/dnb-dropdown-theme-sbanken.scss';
->>>>>>> 97d20ebb6e (style(Dropdown): Add theme for sbanken)
 @import '../../../components/logo/style/themes/dnb-logo-theme-sbanken.scss';
 @import '../../../components/pagination/style/themes/dnb-pagination-theme-sbanken.scss';
 @import '../../../components/progress-indicator/style/themes/dnb-progress-indicator-theme-sbanken.scss';
@@ -39,18 +36,13 @@ $fonts-path: '../../../../assets/fonts/dnb' !default;
 @import '../../../components/table/style/themes/dnb-table-theme-sbanken.scss';
 @import '../../../components/textarea/style/themes/dnb-textarea-theme-sbanken.scss';
 @import '../../../components/tooltip/style/themes/dnb-tooltip-theme-sbanken.scss';
+@import '../../../fragments/drawer-list/style/themes/dnb-drawer-list-theme-sbanken.scss';
 @import '../../../components/autocomplete/style/themes/dnb-autocomplete-theme-ui.scss';
 @import '../../../components/badge/style/themes/dnb-badge-theme-ui.scss';
 @import '../../../components/checkbox/style/themes/dnb-checkbox-theme-ui.scss';
 @import '../../../components/date-picker/style/themes/dnb-date-picker-theme-ui.scss';
 @import '../../../components/dialog/style/themes/dnb-dialog-theme-ui.scss';
 @import '../../../components/drawer/style/themes/dnb-drawer-theme-ui.scss';
-<<<<<<< HEAD
-@import '../../../components/dropdown/style/themes/dnb-dropdown-theme-ui.scss';
-=======
-@import '../../../components/form-label/style/themes/dnb-form-label-theme-ui.scss';
-@import '../../../components/form-row/style/themes/dnb-form-row-theme-ui.scss';
->>>>>>> 97d20ebb6e (style(Dropdown): Add theme for sbanken)
 @import '../../../components/form-set/style/themes/dnb-form-set-theme-ui.scss';
 @import '../../../components/global-error/style/themes/dnb-global-error-theme-ui.scss';
 @import '../../../components/help-button/style/themes/dnb-help-button-theme-ui.scss';
@@ -65,5 +57,4 @@ $fonts-path: '../../../../assets/fonts/dnb' !default;
 @import '../../../components/timeline/style/themes/dnb-timeline-theme-ui.scss';
 @import '../../../components/toggle-button/style/themes/dnb-toggle-button-theme-ui.scss';
 @import '../../../components/upload/style/themes/dnb-upload-theme-ui.scss';
-@import '../../../fragments/drawer-list/style/themes/dnb-drawer-list-theme-ui.scss';
 @import '../../../fragments/scroll-view/style/themes/dnb-scroll-view-theme-ui.scss';
