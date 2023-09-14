@@ -15,6 +15,7 @@ import Option from './Option'
 import SelectCountry from './SelectCountry'
 import BankAccountNumber from './BankAccountNumber'
 import CountryCode from './CountryCode'
+import Expiry from './Expiry'
 
 const Field = {
   String: StringComponent,
@@ -34,6 +35,7 @@ const Field = {
   SelectCountry,
   BankAccountNumber,
   CountryCode,
+  Expiry,
 }
 
 export default Field
