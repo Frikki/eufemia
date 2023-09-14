@@ -174,6 +174,10 @@ export interface FieldProps<
   labelSecondary?: string
   /** Text showing in place of the value if no value is given */
   placeholder?: string
+  /**
+   * Set to `true` in case the `placeholder` has to be kept during focus. By default, the placeholder disappears on focus.
+   */
+  keep_placeholder?: boolean
   info?: Error | FormError | string
   warning?: Error | FormError | string
   error?: Error | FormError
