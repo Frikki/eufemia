@@ -1,51 +1,153 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { useCallback } from 'react'
 import ComponentBox from '../../../../shared/tags/ComponentBox'
+import { Input, Slider } from '@dnb/eufemia/src'
 import {
-  DataContext,
+  Form,
   Layout,
   StepsLayout,
   Field,
   Value,
   Visibility,
-  FieldGroup,
+  FieldBlock,
   useDataValue,
+  DataContext,
 } from '@dnb/eufemia/src/extensions/forms'
 
-export const FirstExampleDemo = () => {
+export const CreateBasicFieldComponent = () => {
+  return (
+    <ComponentBox
+      scope={{
+        Form,
+        Layout,
+        Field,
+        FieldBlock,
+        useDataValue,
+      }}
+    >
+      {() => {
+        const MyCustomField = (props) => {
+          const preparedProps = {
+            ...props,
+            validator: (value) => {
+              return value === 'secret'
+                ? new Error('Do not reveal the secret!')
+                : undefined
+            },
+          }
+
+          const {
+            info,
+            warning,
+            error,
+            value,
+            handleChange,
+            handleFocus,
+            handleBlur,
+          } = useDataValue(preparedProps)
+
+          return (
+            <FieldBlock
+              label="What is the secret of the custom field?"
+              info={info}
+              warning={warning}
+              error={error}
+            >
+              <Input
+                value={value}
+                on_change={({ value }) => handleChange(value)}
+                on_focus={handleFocus}
+                on_blur={handleBlur}
+              />
+            </FieldBlock>
+          )
+        }
+
+        return (
+          <MyCustomField
+            value="Nothing to see here"
+            onChange={(value) => console.log('onChange', value)}
+          />
+        )
+      }}
+    </ComponentBox>
+  )
+}
+
+export const CreateComposedFieldComponent = () => {
   return (
     <ComponentBox
       scope={{
         DataContext,
         Layout,
         Field,
-        FieldGroup,
+        FieldBlock,
+        Slider,
         useDataValue,
+        useCallback,
       }}
     >
       {() => {
-        const MyComponent = (props) => {
-          const { value } = useDataValue(props)
+        const MyComposedField = (props) => {
+          const birthYear = useDataValue({
+            path: '/birthYear',
+          })
+
+          const handleBirthYearChange = useCallback(
+            (sliderData) => {
+              birthYear.handleChange(sliderData.value)
+            },
+            [birthYear],
+          )
 
           return (
-            <FieldGroup warning={value.warning}>
+            <FieldBlock label={props.label ?? 'Name and age'}>
               <Layout.Row>
-                <Field.String {...value.text} />
-                <Field.Number {...value.number} />
+                <Field.String
+                  path="/firstName"
+                  label="First name"
+                  width="medium"
+                  minLength={2}
+                />
+                <Field.String
+                  path="/lastName"
+                  label="Last name"
+                  width="medium"
+                  required
+                />
+                <Layout.FlexItem width="large">
+                  <Slider
+                    min={1900}
+                    max={new Date().getFullYear()}
+                    step={1}
+                    label="Birth year"
+                    label_direction="vertical"
+                    // @ts-ignore
+                    value={birthYear.value}
+                    on_change={handleBirthYearChange}
+                    on_drag_start={birthYear.handleFocus}
+                    on_drag_end={birthYear.handleBlur}
+                    status={birthYear.error?.message}
+                    tooltip
+                    alwaysShowTooltip
+                  />
+                </Layout.FlexItem>
               </Layout.Row>
-            </FieldGroup>
+            </FieldBlock>
           )
+        }
+
+        const data = {
+          firstName: 'John',
+          birthYear: 2000,
         }
 
         return (
           <DataContext.Provider
-            data={{
-              myComponent: {
-                warning: 'Show one warning',
-                text: { label: 'String field', value: 'Some value' },
-                number: { label: 'Number field', value: '123' },
-              },
-            }}
+            data={data}
+            onChange={(data) => console.log('onChange', data)}
           >
-            <MyComponent path="/myComponent" />
+            <MyComposedField label="My custom label" />
           </DataContext.Provider>
         )
       }}
@@ -57,7 +159,7 @@ export const BaseFieldComponents = () => {
   return (
     <ComponentBox
       scope={{
-        DataContext,
+        Form,
         Layout,
         StepsLayout,
         Field,
@@ -90,7 +192,7 @@ export const FeatureFields = () => {
   return (
     <ComponentBox
       scope={{
-        DataContext,
+        Form,
         Layout,
         StepsLayout,
         Field,
@@ -113,7 +215,7 @@ export const LayoutComponents = () => {
   return (
     <ComponentBox
       scope={{
-        DataContext,
+        Form,
         Layout,
         StepsLayout,
         Field,
@@ -147,7 +249,7 @@ export const VisibilityBasedOnData = () => {
   return (
     <ComponentBox
       scope={{
-        DataContext,
+        Form,
         Layout,
         StepsLayout,
         Field,
@@ -155,7 +257,7 @@ export const VisibilityBasedOnData = () => {
         Visibility,
       }}
     >
-      <DataContext.Provider
+      <Form.Handler
         data={{
           firstName: undefined,
           lastName: 'Smith',
@@ -196,16 +298,16 @@ export const VisibilityBasedOnData = () => {
             </Layout.Card>
           </Layout.Section>
         </Visibility>
-      </DataContext.Provider>
+      </Form.Handler>
     </ComponentBox>
   )
 }
 
-export const UsingDataContextProvider = () => {
+export const UsingFormHandler = () => {
   return (
     <ComponentBox
       scope={{
-        DataContext,
+        Form,
         Layout,
         StepsLayout,
         Field,
@@ -213,7 +315,7 @@ export const UsingDataContextProvider = () => {
         Visibility,
       }}
     >
-      <DataContext.Provider
+      <Form.Handler
         data={{
           firstName: 'John',
           lastName: 'Smith',
@@ -237,10 +339,10 @@ export const UsingDataContextProvider = () => {
           <Field.PhoneNumber path="/phone" />
 
           <Layout.ButtonRow>
-            <DataContext.SubmitButton />
+            <Form.SubmitButton />
           </Layout.ButtonRow>
         </Layout.Card>
-      </DataContext.Provider>
+      </Form.Handler>
     </ComponentBox>
   )
 }
@@ -249,7 +351,7 @@ export const Validation = () => {
   return (
     <ComponentBox
       scope={{
-        DataContext,
+        Form,
         Layout,
         StepsLayout,
         Field,
@@ -257,7 +359,7 @@ export const Validation = () => {
         Visibility,
       }}
     >
-      <DataContext.Provider
+      <Form.Handler
         data={{
           firstName: undefined,
           lastName: 'Smith',
@@ -280,7 +382,7 @@ export const Validation = () => {
           <Field.Email path="/email" validateInitially />
           <Field.PhoneNumber path="/phone" validateInitially />
         </Layout.Card>
-      </DataContext.Provider>
+      </Form.Handler>
     </ComponentBox>
   )
 }
@@ -289,7 +391,7 @@ export const WithSteps = () => {
   return (
     <ComponentBox
       scope={{
-        DataContext,
+        Form,
         Layout,
         StepsLayout,
         Field,
@@ -297,7 +399,7 @@ export const WithSteps = () => {
         Visibility,
       }}
     >
-      <DataContext.Provider
+      <Form.Handler
         data={{
           firstName: undefined,
           lastName: 'Smith',
@@ -361,11 +463,11 @@ export const WithSteps = () => {
 
             <Layout.ButtonRow>
               <StepsLayout.PreviousButton />
-              <DataContext.SubmitButton />
+              <Form.SubmitButton />
             </Layout.ButtonRow>
           </StepsLayout.Step>
         </StepsLayout>
-      </DataContext.Provider>
+      </Form.Handler>
     </ComponentBox>
   )
 }
